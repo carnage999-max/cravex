@@ -57,7 +57,7 @@ export function Contact() {
                             <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 shadow-sm shadow-red-50">
                                 <Mail className="w-5 h-5" />
                             </div>
-                            <span className="font-bold text-slate-900 underline decoration-red-200 decoration-2 underline-offset-4 pointer-events-none">contact@cravex.tech</span>
+                            <span className="font-bold text-slate-900 underline decoration-red-200 decoration-2 underline-offset-4">info@cravex.net</span>
                         </div>
                     </div>
                 </div>

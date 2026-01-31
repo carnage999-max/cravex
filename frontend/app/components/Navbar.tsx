@@ -58,22 +58,20 @@ export function Navbar() {
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="flex items-center gap-8">
-                    <Link href="/" className="flex items-center gap-4 transition-transform hover:scale-[1.02] active:scale-95 group">
-                        <div className="relative w-12 h-12 md:w-14 md:h-14 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border-2 border-slate-50 flex items-center justify-center overflow-hidden group-hover:border-red-500 transition-all duration-500">
-                            <Image
-                                src="/cravex.png"
-                                alt="CRAVEX Logo Mark"
-                                width={60}
-                                height={60}
-                                className="w-full h-full object-contain p-2"
-                                priority
-                            />
-                        </div>
+                    <Link href="/" className="flex items-center gap-6 transition-transform hover:scale-[1.02] active:scale-95 group">
+                        <Image
+                            src="/cravex.png"
+                            alt="CRAVEX Logo Mark"
+                            width={100}
+                            height={100}
+                            className="w-16 h-16 md:w-20 md:h-20 object-contain rounded-2xl shadow-xl shadow-slate-200/50 hover:scale-105 transition-all duration-500"
+                            priority
+                        />
                         <div className="flex flex-col">
-                            <span className="text-2xl md:text-3xl font-black tracking-tighter text-slate-900 leading-none uppercase">
+                            <span className="text-3xl md:text-4xl font-black tracking-tighter text-slate-900 leading-none uppercase">
                                 CRAVEX<span className="text-xs align-top relative top-0.5 ml-0.5 opacity-40 font-bold">®</span>
                             </span>
-                            <span className="text-[10px] uppercase tracking-[0.4em] text-red-600 font-black leading-none mt-1.5 grayscale group-hover:grayscale-0 transition-all">
+                            <span className="text-[11px] uppercase tracking-[0.4em] text-red-600 font-black leading-none mt-2 grayscale group-hover:grayscale-0 transition-all">
                                 Control the Craving
                             </span>
                         </div>

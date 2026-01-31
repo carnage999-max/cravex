@@ -1,10 +1,13 @@
 'use client'
 
 import React, { Suspense, useMemo, useRef } from 'react'
+import Image from 'next/image'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, MeshDistortMaterial, Sphere, useScroll, ScrollControls } from '@react-three/drei'
 import * as THREE from 'three'
+import Link from 'next/link'
 import { Button } from './ui/Button'
+import { StoreButtons } from './StoreButtons'
 import { useAccessibility } from './AccessibilityProvider'
 import { useWalkthrough } from './WalkthroughProvider'
 
@@ -92,6 +95,8 @@ export function Hero() {
                         Start Guided Walkthrough
                     </Button>
                 </div>
+
+                <StoreButtons className="pt-8" />
 
                 <div className="flex flex-col items-center gap-4">
                     <div className="h-px w-24 bg-slate-200" />

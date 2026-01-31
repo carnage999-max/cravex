@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { StoreButtons } from './StoreButtons'
 import { Sparkles, Shield, Map, Accessibility } from 'lucide-react'
 
 const features = [
@@ -49,8 +51,14 @@ export function DeviceApp() {
                         ))}
                     </div>
 
-                    <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100 italic text-slate-500">
-                        Designed to integrate seamlessly into your day, providing support exactly when the signal intensifies.
+                    <div className="flex flex-col gap-6 p-10 rounded-[3rem] bg-slate-50 border border-slate-100 shadow-sm shadow-slate-200/50">
+                        <div className="space-y-2 text-left">
+                            <p className="text-xs font-black uppercase tracking-[0.3em] text-red-600">Get Started</p>
+                            <p className="text-lg font-bold text-slate-900 leading-tight">
+                                Download the CRAVEX® companion app to begin your journey.
+                            </p>
+                        </div>
+                        <StoreButtons variant="left" />
                     </div>
                 </div>
             </div>

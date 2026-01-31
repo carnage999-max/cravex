@@ -13,6 +13,7 @@ import { PrivacySafety } from './components/PrivacySafety'
 import { FAQ } from './components/FAQ'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
+import { StoreButtons } from './components/StoreButtons'
 
 const Hero = dynamic(() => import('./components/Hero').then(mod => mod.Hero), {
   ssr: false,
@@ -36,26 +37,26 @@ export default function Home() {
       <Contact />
 
       <footer className="py-24 px-6 bg-[#fcfcfc] border-t border-slate-100 italic">
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-12">
-          <div className="flex flex-col items-center gap-4 group">
-            <div className="w-16 h-16 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex items-center justify-center overflow-hidden group-hover:border-red-500 transition-all duration-500">
-              <Image
-                src="/cravex.png"
-                alt="CRAVEX Logo"
-                width={64}
-                height={64}
-                className="w-full h-full object-contain p-2"
-              />
-            </div>
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-16">
+          <div className="flex flex-col items-center gap-6 group">
+            <Image
+              src="/cravex.png"
+              alt="CRAVEX Logo"
+              width={100}
+              height={100}
+              className="w-24 h-24 object-contain rounded-[2rem] shadow-xl shadow-slate-200/50 hover:scale-105 transition-all duration-500"
+            />
             <div className="text-center">
-              <div className="text-2xl font-black tracking-tighter text-slate-900 leading-none uppercase">
+              <div className="text-3xl font-black tracking-tighter text-slate-900 leading-none uppercase">
                 CRAVEX<span className="text-xs align-top relative top-0.5 ml-0.5 opacity-40 font-bold">®</span>
               </div>
-              <div className="text-[10px] uppercase tracking-[0.4em] text-red-600 font-black leading-none mt-2">
+              <div className="text-[11px] uppercase tracking-[0.6em] text-red-600 font-black leading-none mt-3">
                 Control the Craving
               </div>
             </div>
           </div>
+
+          <StoreButtons />
 
           <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 border-t border-slate-100 pt-12">
             <div className="text-sm text-slate-400 font-medium">
