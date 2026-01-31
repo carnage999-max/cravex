@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { authorize } from '@/lib/auth';
+import { authorize } from '@/app/lib/auth';
 import { db, events, devices } from '@cravex/db';
 import { eventBatchSchema } from '@cravex/shared';
 import { eq, and } from 'drizzle-orm';

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { authorize } from '@/lib/auth';
+import { authorize } from '@/app/lib/auth';
 import { db, configs } from '@cravex/db';
 import { configPatchSchema, CONFIG_BOUNDS } from '@cravex/shared';
 import { eq } from 'drizzle-orm';
