@@ -5,7 +5,6 @@
   "types": "./src/index.ts",
   "scripts": {
     "generate": "drizzle-kit generate:pg",
-    "migrate": "drizzle-kit migrate",
     "push": "drizzle-kit push:pg",
     "studio": "drizzle-kit studio"
   },

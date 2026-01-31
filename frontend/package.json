@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "db:migrate": "cd ../packages/db && pnpm migrate",
-    "build": "pnpm db:migrate && next build",
+    "db:push": "cd ../packages/db && pnpm push",
+    "build": "pnpm db:push && next build",
     "start": "next start",
     "lint": "next lint"
   },
