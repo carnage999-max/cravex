@@ -1,0 +1,22 @@
+{
+  "name": "@cravex/db",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "generate": "drizzle-kit generate:pg",
+    "migrate": "drizzle-kit migrate",
+    "push": "drizzle-kit push:pg",
+    "studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.0",
+    "drizzle-orm": "^0.30.1",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.20.14",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}

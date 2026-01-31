@@ -1,49 +1,245 @@
-# CRAVEX® — Calm Nervous-System Technology
+# CRAVEX® Monorepo
 
-CRAVEX® is a modern, premium, mobile-first single-page website built with Next.js (App Router). It serves as a credibility engine and education platform for a nervous-system pattern interruption technology.
+> **Control the Craving** — A calm, evidence-based approach to craving management through real-time biometric monitoring.
 
-## Tech Stack
-- **Framework**: Next.js 15+ (App Router)
-- **Styling**: Tailwind CSS
-- **Interactions**: Framer Motion (reduced-motion aware)
-- **3D Hero**: Three.js (@react-three/fiber + @react-three/drei)
-- **Forms**: Zod (validation) + Resend (email)
+## 📋 Overview
+
+CRAVEX® is a comprehensive platform consisting of:
+- **Frontend**: Next.js website with backend API capabilities
+- **Mobile**: React Native (Expo) app with Three.js animations
+- **Shared Packages**: Common schemas and database layer
+
+## 🏗️ Architecture
+
+```
+cravex/
+├── frontend/          # Next.js website + API routes
+├── mobile/            # Expo React Native app
+├── packages/
+│   ├── shared/        # Shared Zod schemas
+│   └── db/            # Drizzle ORM + Neon Postgres
+├── turbo.json         # Turborepo configuration
+└── pnpm-workspace.yaml
+```
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS 4
+- **3D Graphics**: Three.js, React Three Fiber
+- **Animations**: Framer Motion
+- **Email**: React Email + Resend
+- **Validation**: Zod
+
+### Mobile
+- **Framework**: Expo (React Native)
+- **Navigation**: React Navigation
+- **3D Graphics**: Three.js + expo-three + expo-gl
+- **Validation**: Zod
+
+### Backend & Database
+- **ORM**: Drizzle ORM
+- **Database**: Neon Postgres (serverless)
+- **API**: Next.js Route Handlers
+
+### Monorepo Tools
+- **Package Manager**: pnpm (with workspaces)
+- **Build System**: Turborepo
 - **Language**: TypeScript
 
-## Key Features
-- **Calm UI**: Designed to be non-triggering, using soft gradients, glassmorphism, and generous whitespace.
-- **Accessibility**: WCAG-minded, full keyboard navigation support, and a dedicated "Reduce Motion" toggle.
-- **Interactive Diagrams**: Explained the nervous-system signal cycle through an accessible interactive flow.
-- **Privacy-First**: Minimal analytics approach, no dark patterns, and ethical data handling.
+## 🚀 Getting Started
 
-## Getting Started
+### Prerequisites
 
-1. **Clone the repository**
-2. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
-3. **Set up environment variables**
-   Copy `.env.example` to `.env.local` and fill in your Resend API credentials.
-   ```bash
-   cp .env.example .env.local
-   ```
-4. **Run the development server**
-   ```bash
-   pnpm dev
-   ```
-5. **Open the site**
-   Visit [http://localhost:3000](http://localhost:3000)
+- Node.js 20+ 
+- pnpm 9+
+- Expo Go app (for mobile development)
 
-## Deployment
+### Installation
 
-The project is designed to be platform-agnostic but optimized for AWS (via Amplify or Vercel).
-1. Ensure `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` are set in your production environment.
-2. Build the project: `pnpm build`
-3. Deploy the `out` or the serverless build depending on your hosting provider.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd cravex
 
-## Accessibility Note
-Motion is kept subtle by default. The "Reduce Motion" toggle in the navbar allows users to disable Three.js animations and Framer Motion transitions globally. This state is persisted in `localStorage`.
+# Install all dependencies
+pnpm install
+```
 
-## Content & Ethics
-Content is derived from `content.txt` and follows the hard constraints in `instructions.txt`. No medical claims or urgency-driven marketing tactics are used.
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Resend API (for contact form emails)
+RESEND_API_KEY=re_xxxxxxxxxxxxx
+CONTACT_FROM_EMAIL=noreply@yourdomain.com
+CONTACT_TO_EMAIL=admin@yourdomain.com,team@yourdomain.com
+
+# Neon Database
+DATABASE_URL=postgresql://user:password@host/database?sslmode=require
+```
+
+### Development
+
+```bash
+# Run all apps in development mode
+pnpm dev
+
+# Run only frontend
+cd frontend && pnpm dev
+
+# Run only mobile
+cd mobile && pnpm dev
+
+# Run database studio
+cd packages/db && pnpm studio
+```
+
+### Database Setup
+
+```bash
+# Generate migrations
+cd packages/db
+pnpm generate
+
+# Push schema to database
+pnpm push
+
+# Open Drizzle Studio
+pnpm studio
+```
+
+## 📱 Mobile Development
+
+### Running on Device/Simulator
+
+```bash
+cd mobile
+
+# Start Expo dev server
+pnpm start
+
+# Run on Android
+pnpm android
+
+# Run on iOS (macOS only)
+pnpm ios
+
+# Run on web
+pnpm web
+```
+
+### Three.js Animations
+
+The mobile app includes custom Three.js animations for:
+- **Device Connection**: Animated spheres showing pairing status
+- **Signal Stability**: Pulsing rings indicating signal strength
+- **Calibration**: (To be implemented)
+
+All animations respect reduced motion preferences and include fallbacks.
+
+## 🌐 Frontend Features
+
+### Website Sections
+- **Hero**: 3D particle background with CTA
+- **Problem**: Explanation of craving challenges
+- **How It Works**: 3-phase approach visualization
+- **Tech Deep Dive**: Interactive phase selector with 3D
+- **Conditions**: Supported use cases
+- **Science**: Evidence-based approach
+- **Device & App**: Product showcase
+- **Privacy & Safety**: Security features
+- **FAQ**: Common questions
+- **About**: Team and mission
+- **Contact**: Form with email notifications
+
+### Special Features
+- **Guided Walkthrough**: Interactive tour of the website
+- **Accessibility**: Motion toggle, keyboard navigation, ARIA labels
+- **SEO**: JSON-LD structured data, meta tags
+- **Legal**: Privacy Policy and Terms of Service pages
+
+## 📦 Packages
+
+### `@cravex/shared`
+Shared Zod schemas for API contracts between frontend and mobile.
+
+```typescript
+import { contactFormSchema } from '@cravex/shared';
+```
+
+### `@cravex/db`
+Database schema and client using Drizzle ORM.
+
+```typescript
+import { db, users, waitlist } from '@cravex/db';
+```
+
+## 🏗️ Building for Production
+
+```bash
+# Build all packages
+pnpm build
+
+# Build frontend only
+cd frontend && pnpm build
+
+# Start production server
+cd frontend && pnpm start
+```
+
+## 📝 Scripts
+
+### Root Level
+- `pnpm dev` - Start all apps in development mode
+- `pnpm build` - Build all packages
+- `pnpm lint` - Lint all packages
+
+### Frontend
+- `pnpm dev` - Start Next.js dev server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+
+### Mobile
+- `pnpm start` - Start Expo dev server
+- `pnpm android` - Run on Android
+- `pnpm ios` - Run on iOS
+- `pnpm web` - Run on web
+
+### Database
+- `pnpm generate` - Generate migrations
+- `pnpm migrate` - Run migrations
+- `pnpm push` - Push schema to database
+- `pnpm studio` - Open Drizzle Studio
+
+## 🎨 Design Philosophy
+
+CRAVEX® follows a **calm design** approach:
+- **No urgency**: No countdown timers or pressure tactics
+- **No dark patterns**: Transparent, honest communication
+- **Accessibility first**: WCAG 2.1 AA compliant
+- **Privacy by design**: Local processing, minimal data collection
+- **Evidence-based**: Grounded in scientific research
+
+## 🔒 Privacy & Security
+
+- All biometric data processed locally on device
+- No third-party analytics or tracking
+- End-to-end encryption for device communication
+- GDPR and HIPAA compliant architecture
+- Transparent data handling policies
+
+## 📄 License
+
+Copyright © 2026 CRAVEX Technology. All rights reserved.
+
+## 🤝 Contributing
+
+This is a private repository. For questions or support, contact the development team.
+
+---
+
+**Built with calm by design** 🧘‍♀️
