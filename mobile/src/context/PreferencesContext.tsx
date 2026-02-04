@@ -9,6 +9,8 @@ interface PreferencesContextType {
     setIsAuthenticated: (value: boolean) => void;
     userToken: string | null;
     setUserToken: (token: string | null) => Promise<void>;
+    pairedDeviceId: string | null;
+    setPairedDeviceId: (id: string | null) => Promise<void>;
 }
 
 const PreferencesContext = React.createContext<PreferencesContextType | undefined>(undefined);
@@ -18,6 +20,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     const [reduceMotion, _setReduceMotion] = React.useState(false);
     const [isAuthenticated, setIsAuthenticated] = React.useState(false);
     const [userToken, _internalSetUserToken] = React.useState<string | null>(null);
+    const [pairedDeviceId, _internalSetPairedDeviceId] = React.useState<string | null>(null);
 
     const setUserToken = async (token: string | null) => {
         _internalSetUserToken(token);
@@ -32,6 +35,19 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
         }
     };
 
+    const setPairedDeviceId = async (id: string | null) => {
+        _internalSetPairedDeviceId(id);
+        try {
+            if (id) {
+                await AsyncStorage.setItem('pairedDeviceId', id);
+            } else {
+                await AsyncStorage.removeItem('pairedDeviceId');
+            }
+        } catch (e) {
+            console.error('Failed to save pairedDeviceId', e);
+        }
+    };
+
     React.useEffect(() => {
         // Load persisted preferences
         const loadPreferences = async () => {
@@ -43,8 +59,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
 
                 const token = await AsyncStorage.getItem('userToken');
                 if (token) {
-                    await setUserToken(token);
+                    _internalSetUserToken(token);
                     setIsAuthenticated(true);
+                }
+
+                const savedDeviceId = await AsyncStorage.getItem('pairedDeviceId');
+                if (savedDeviceId) {
+                    _internalSetPairedDeviceId(savedDeviceId);
                 }
             } catch (e) {
                 console.error('Failed to load preferences', e);
@@ -71,6 +92,8 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
                 setIsAuthenticated,
                 userToken,
                 setUserToken,
+                pairedDeviceId,
+                setPairedDeviceId,
             }}
         >
             {children}

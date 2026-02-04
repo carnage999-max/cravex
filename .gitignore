@@ -50,3 +50,5 @@ drizzle/
 
 # Context files
 *.txt
+.agent/
+.env.local

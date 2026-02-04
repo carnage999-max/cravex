@@ -55,10 +55,19 @@ export default function EventLogScreen() {
         }
     };
 
+    const getIconColor = (type: string) => {
+        switch (type.toLowerCase()) {
+            case 'biometrics': return '#22c55e';
+            case 'error': return '#ef4444';
+            case 'pairing': return '#3b82f6';
+            default: return COLORS.primary;
+        }
+    };
+
     const renderItem = ({ item }: { item: LogEntry }) => (
-        <TouchableOpacity style={styles.logItem}>
-            <View style={[styles.iconContainer, { backgroundColor: COLORS.background }]}>
-                <Ionicons name={getIcon(item.type) as any} size={20} color={COLORS.primary} />
+        <View style={styles.logItem}>
+            <View style={[styles.iconContainer, { backgroundColor: `${getIconColor(item.type)}10` }]}>
+                <Ionicons name={getIcon(item.type) as any} size={20} color={getIconColor(item.type)} />
             </View>
             <View style={styles.logContent}>
                 <View style={styles.logHeader}>
@@ -66,10 +75,10 @@ export default function EventLogScreen() {
                     <Text style={styles.logTime}>{new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
                 </View>
                 <Text style={styles.logMessage}>
-                    {item.message || (item.type === 'biometrics' ? `HR: ${item.payload?.heartRate} | SC: ${item.payload?.skinConductance}` : 'Activity recorded')}
+                    {item.message || (item.type === 'biometrics' ? `HR: ${item.payload?.heartRate} bpm | Signal: ${item.payload?.signalStrength}%` : 'System activity recorded')}
                 </Text>
             </View>
-        </TouchableOpacity>
+        </View>
     );
 
     if (loading && !refreshing) {
@@ -83,8 +92,8 @@ export default function EventLogScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>Event Log</Text>
-                <Text style={styles.subtitle}>History of device interactions</Text>
+                <Text style={styles.title}>Activity Log</Text>
+                <Text style={styles.subtitle}>Historical record of device signals and events</Text>
             </View>
 
             <FlatList
@@ -97,8 +106,11 @@ export default function EventLogScreen() {
                 }
                 ListEmptyComponent={
                     <View style={styles.emptyState}>
-                        <Ionicons name="document-text-outline" size={48} color={COLORS.border} />
-                        <Text style={styles.emptyStateText}>No events recorded yet.</Text>
+                        <View style={styles.emptyIconCircle}>
+                            <Ionicons name="document-text-outline" size={48} color={COLORS.border} />
+                        </View>
+                        <Text style={styles.emptyStateTitle}>No Logs Found</Text>
+                        <Text style={styles.emptyStateText}>As you use your device, activity events will appear here.</Text>
                     </View>
                 }
             />
@@ -109,47 +121,49 @@ export default function EventLogScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.background,
+        backgroundColor: '#f8fafc',
     },
     header: {
-        padding: 24,
-        paddingTop: 60,
-        backgroundColor: COLORS.card,
+        paddingHorizontal: 24,
+        paddingTop: 40,
+        paddingBottom: 24,
+        backgroundColor: '#ffffff',
         borderBottomWidth: 1,
-        borderBottomColor: COLORS.border,
+        borderBottomColor: '#f1f5f9',
     },
     title: {
-        fontSize: 28,
+        fontSize: 32,
         fontWeight: '800',
         color: COLORS.text,
-        letterSpacing: -0.5,
+        letterSpacing: -1,
     },
     subtitle: {
         fontSize: 15,
         color: COLORS.subtext,
         marginTop: 4,
+        lineHeight: 20,
     },
     listContent: {
-        padding: 16,
-        paddingBottom: 32,
+        padding: 20,
+        paddingBottom: 40,
     },
     logItem: {
         flexDirection: 'row',
-        backgroundColor: COLORS.card,
-        borderRadius: 12,
+        backgroundColor: '#ffffff',
+        borderRadius: 20,
         padding: 16,
         marginBottom: 12,
         alignItems: 'center',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.03,
+        shadowRadius: 8,
         elevation: 2,
     },
     iconContainer: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: 44,
+        height: 44,
+        borderRadius: 14,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -165,27 +179,48 @@ const styles = StyleSheet.create({
     },
     logType: {
         fontSize: 11,
-        fontWeight: '700',
+        fontWeight: '800',
         color: COLORS.subtext,
         letterSpacing: 1,
     },
     logTime: {
         fontSize: 12,
         color: COLORS.subtext,
+        fontWeight: '500',
     },
     logMessage: {
         fontSize: 15,
         color: COLORS.text,
-        fontWeight: '500',
+        fontWeight: '600',
+        lineHeight: 20,
     },
     emptyState: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 100,
+        marginTop: 80,
+        paddingHorizontal: 40,
+    },
+    emptyIconCircle: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 1,
+        borderColor: '#f1f5f9',
+    },
+    emptyStateTitle: {
+        fontSize: 18,
+        fontWeight: '800',
+        color: COLORS.text,
+        marginBottom: 8,
     },
     emptyStateText: {
-        marginTop: 16,
         color: COLORS.subtext,
-        fontSize: 16,
+        fontSize: 14,
+        textAlign: 'center',
+        lineHeight: 20,
     },
 });

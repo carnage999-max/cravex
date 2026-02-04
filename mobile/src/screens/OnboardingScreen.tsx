@@ -72,6 +72,11 @@ export default function OnboardingScreen() {
 
     const renderWelcome = () => (
         <View style={styles.stepContainer}>
+            <Image
+                source={require('../../assets/cravex-logo.png')}
+                style={{ width: 120, height: 40, marginBottom: 40 }}
+                resizeMode="contain"
+            />
             <View style={styles.iconCircle}>
                 <Ionicons name="pulse" size={60} color={COLORS.primary} />
             </View>
@@ -161,16 +166,13 @@ export default function OnboardingScreen() {
             </Text>
 
             <TextInput
-                style={styles.input}
+                style={[styles.input, { textAlign: 'center', fontSize: 32, fontWeight: '800' }]}
                 placeholder="000000"
                 value={otp}
                 onChangeText={setOtp}
                 keyboardType="number-pad"
                 maxLength={6}
                 placeholderTextColor="#94a3b8"
-                textAlign="center"
-                fontSize={32}
-                fontWeight="800"
             />
 
             <TouchableOpacity
