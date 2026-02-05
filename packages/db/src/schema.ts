@@ -19,7 +19,7 @@ export const sessions = pgTable('sessions', {
 });
 
 export const devices = pgTable('devices', {
-    id: uuid('id').defaultRandom().primaryKey(),
+    id: text('id').primaryKey(),
     userId: uuid('user_id').references(() => users.id).notNull(),
     label: text('label'),
     lastSeenAt: timestamp('last_seen_at'),
@@ -29,7 +29,7 @@ export const devices = pgTable('devices', {
 export const configs = pgTable('configs', {
     id: uuid('id').defaultRandom().primaryKey(),
     userId: uuid('user_id').references(() => users.id).notNull(),
-    deviceId: uuid('device_id').references(() => devices.id),
+    deviceId: text('device_id').references(() => devices.id),
     data: jsonb('data').notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -37,7 +37,7 @@ export const configs = pgTable('configs', {
 export const events = pgTable('events', {
     id: uuid('id').defaultRandom().primaryKey(),
     userId: uuid('user_id').references(() => users.id).notNull(),
-    deviceId: uuid('device_id').references(() => devices.id),
+    deviceId: text('device_id').references(() => devices.id),
     type: text('type').notNull(),
     payload: jsonb('payload'),
     createdAt: timestamp('created_at').defaultNow().notNull(),

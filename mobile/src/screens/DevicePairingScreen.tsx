@@ -12,13 +12,13 @@ export default function DevicePairingScreen({ navigation }: any) {
     const [devices, setDevices] = React.useState<{ id: string; name: string; signal: number }[]>([]);
 
     const startScan = () => {
-        setStatus('scanning');
         setDevices([]);
+        setStatus('scanning');
         // Simulate finding devices
         setTimeout(() => {
             setDevices([
-                { id: 'CX-8821', name: 'CRAVEX Device #08821', signal: 92 },
-                { id: 'CX-4129', name: 'CRAVEX Device #04129', signal: 78 },
+                { id: 'CX-08821', name: 'CRAVEX Alpha', signal: 92 },
+                { id: 'CX-04129', name: 'CRAVEX Beta', signal: 78 },
             ]);
         }, 2000);
     };

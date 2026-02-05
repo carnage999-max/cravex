@@ -12,7 +12,7 @@ export const authVerifyOtpSchema = z.object({
 
 // --- DEVICES ---
 export const deviceBindSchema = z.object({
-    deviceId: z.string().uuid({ message: "Invalid device ID" }),
+    deviceId: z.string().min(4, { message: "Invalid device ID" }),
     label: z.string().max(50).optional(),
 });
 
@@ -40,7 +40,7 @@ export const eventItemSchema = z.object({
 });
 
 export const eventBatchSchema = z.object({
-    deviceId: z.string().uuid(),
+    deviceId: z.string(),
     events: z.array(eventItemSchema).max(100),
 });
 
