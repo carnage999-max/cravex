@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "db:push": "cd ../packages/db && pnpm push",
-    "build": "pnpm db:push && next build",
+    "db:migrate": "cd ../packages/db && pnpm drizzle-kit migrate:pg",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
