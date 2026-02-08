@@ -37,7 +37,7 @@ export default function DeleteAccount() {
                                 <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                                     <h3 className="text-lg font-bold text-slate-900 mb-2">Option 2: Email Request</h3>
                                     <p className="text-sm">
-                                        Send an email from your registered address to <span className="text-red-600 font-bold">privacy@cravex.tech</span> with the subject "Account Deletion Request".
+                                        Send an email from your registered address to <span className="text-red-600 font-bold">privacy@cravex.net</span> with the subject "Account Deletion Request".
                                     </p>
                                 </div>
                             </div>

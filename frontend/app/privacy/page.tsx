@@ -121,7 +121,7 @@ export default function PrivacyPolicy() {
                         <section className="space-y-4 border-l-4 border-red-600 pl-6 bg-red-50/30 p-6 rounded-r-3xl">
                             <h2 className="text-2xl font-bold text-slate-900">13. Data Protection Officer and Contact</h2>
                             <p>
-                                We maintain a designated Data Protection Officer (“DPO”) to oversee compliance. Users may exercise their rights or submit complaints via email at <span className="text-red-600 font-bold">privacy@cravex.tech</span> or by mail to our registered office in Florida, USA.
+                                We maintain a designated Data Protection Officer (“DPO”) to oversee compliance. Users may exercise their rights or submit complaints via email at <span className="text-red-600 font-bold">privacy@cravex.net</span> or by mail to our registered office in Florida, USA.
                             </p>
                         </section>
 

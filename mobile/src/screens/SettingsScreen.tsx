@@ -197,7 +197,7 @@ export default function SettingsScreen() {
                     <Text style={[styles.actionText, { color: COLORS.secondary }]}>Sign Out</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.actionItem} onPress={() => Alert.alert('Delete Account', 'For your security, account deletion must be confirmed via support@cravex.net.')}>
+                <TouchableOpacity style={styles.actionItem} onPress={() => Alert.alert('Delete Account', 'For your security, account deletion must be confirmed via privacy@cravex.net.')}>
                     <Ionicons name="trash-outline" size={20} color="#94a3b8" />
                     <Text style={[styles.actionText, { color: '#94a3b8' }]}>Delete Account</Text>
                 </TouchableOpacity>
