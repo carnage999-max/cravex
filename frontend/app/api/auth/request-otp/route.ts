@@ -17,7 +17,8 @@ export async function POST(request: Request) {
         }
 
         const { email } = result.data;
-        const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+        const isTestUser = email.toLowerCase() === 'test@cravex.net';
+        const otpCode = isTestUser ? '123456' : Math.floor(100000 + Math.random() * 900000).toString();
         const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
         // Check if user exists
@@ -33,6 +34,11 @@ export async function POST(request: Request) {
             await db.update(users)
                 .set({ otpCode, otpExpiresAt: expiresAt })
                 .where(eq(users.email, email));
+        }
+
+        // Skip email for test user
+        if (isTestUser) {
+            return NextResponse.json({ ok: true });
         }
 
         // Send actual email using Resend
