@@ -1,70 +1,29 @@
 'use client'
 
-import React, { Suspense, useMemo, useRef } from 'react'
-import Image from 'next/image'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, MeshDistortMaterial, Sphere, useScroll, ScrollControls } from '@react-three/drei'
-import * as THREE from 'three'
-import Link from 'next/link'
+import React from 'react'
 import { Button } from './ui/Button'
 import { StoreButtons } from './StoreButtons'
-import { useAccessibility } from './AccessibilityProvider'
 import { useWalkthrough } from './WalkthroughProvider'
-
-function CalmingShape() {
-    const mesh = useRef<THREE.Mesh>(null!)
-    const { reduceMotion } = useAccessibility()
-
-    useFrame((state) => {
-        if (reduceMotion) return
-        const time = state.clock.getElapsedTime()
-        mesh.current.rotation.x = Math.sin(time / 4) * 0.2
-        mesh.current.rotation.y = Math.sin(time / 2) * 0.2
-    })
-
-    return (
-        <Float speed={reduceMotion ? 0 : 1.5} rotationIntensity={reduceMotion ? 0 : 0.5} floatIntensity={reduceMotion ? 0 : 0.5}>
-            <Sphere ref={mesh} args={[1, 64, 64]} scale={2}>
-                <MeshDistortMaterial
-                    color="#fca5a5"
-                    speed={reduceMotion ? 0 : 2}
-                    distort={reduceMotion ? 0 : 0.3}
-                    radius={1}
-                    emissive="#fee2e2"
-                    emissiveIntensity={0.2}
-                    roughness={0.2}
-                    metalness={0.1}
-                    transparent
-                    opacity={0.6}
-                />
-            </Sphere>
-        </Float>
-    )
-}
-
-function Scene() {
-    return (
-        <>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.5} color="#94a3b8" />
-            <CalmingShape />
-        </>
-    )
-}
 
 export function Hero() {
     const { startWalkthrough } = useWalkthrough()
 
     return (
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 px-6 overflow-hidden">
-            {/* Background 3D */}
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,_#fff_0%,_#f9fafb_100%)]">
-                <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-                    <Suspense fallback={null}>
-                        <Scene />
-                    </Suspense>
-                </Canvas>
+            <div className="absolute inset-0 -z-10">
+                <video
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-hidden="true"
+                >
+                    <source src="/hero-video.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.38),rgba(248,250,252,0.82)_58%,rgba(248,250,252,0.94)_100%)]" />
+                <div className="absolute inset-0 bg-white/20" />
             </div>
 
             <div className="max-w-4xl w-full text-center space-y-12 z-10">

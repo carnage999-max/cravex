@@ -16,7 +16,15 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png' },
+    ],
+    shortcut: ['/favicon.ico'],
   },
 }
 
@@ -57,7 +65,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "CRAVEX",
               "url": "https://cravex.tech",
-              "logo": "https://cravex.tech/cravex.png",
+              "logo": "https://cravex.tech/logo.png",
               "description": "CRAVEX is a nervous-system technology designed to support people dealing with cravings, anxiety, and stress."
             })
           }}
