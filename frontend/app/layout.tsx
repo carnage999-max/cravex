@@ -8,6 +8,7 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest",
   title: 'CRAVEX® — Calm Nervous-System Technology',
   description: 'CRAVEX® is a nervous-system technology designed to support people dealing with cravings, anxiety, and stress through calm, guided pattern interruption.',
   openGraph: {
